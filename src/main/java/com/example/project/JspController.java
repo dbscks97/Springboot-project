@@ -11,6 +11,11 @@ public class JspController {
     public String main()  {
         return "main";
     }
+    
+    @RequestMapping("BD_Cont")
+    public String BD_Cont()  {
+        return "BD_Cont";
+    }
 
     @RequestMapping("header")
     public String header()  {
