@@ -119,8 +119,8 @@ div.list {
 	</div>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-right: 170px">
-		<button class="btn btn-primary me-md-2" type="button"
-				onclick="location.href='BD_Write.jsp'">글작성</button>
+		<button class="btn btn-primary me-md-2" type="button" 
+		onclick="location.href='http://localhost:8080/BD_write'">글작성</button>
 	</div>
 	
 	<div class="pageNum" style="margin-top: 50px">
