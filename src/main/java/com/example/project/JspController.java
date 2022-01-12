@@ -27,6 +27,13 @@ public class JspController {
         return "footer";
     }
     
+    @RequestMapping("BD_list")
+    public String BD_list() {
+        return "BD_list";
+    }
     
-    
+    @RequestMapping("BD_write")
+    public String BD_write() {
+        return "BD_write";
+    }
 }
