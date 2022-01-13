@@ -71,7 +71,6 @@
 		<h3>댓글</h3>
 		<hr />
 	</div>
-
 	<div class="container">
 		<div class="card">
 			<div class="card-header">
