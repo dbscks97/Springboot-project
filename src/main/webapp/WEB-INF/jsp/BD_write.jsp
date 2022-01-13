@@ -26,6 +26,7 @@ color: black;
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 </head>
+
 <body>
 	 <%@ include file="../fix/header.jsp" %>
 	<h1 style="margin: 30px 0px 0px 340px">글 작성하기</h1>
