@@ -37,7 +37,7 @@
 	</header>
 
 	<div class="container">
-		<h2>@@게시판</h2>
+		<h1>@@게시판</h1>
 		<hr />
 	</div>
 
@@ -68,7 +68,7 @@
 	</div>
 
 	<div class="container">
-		<h2>댓글</h2>
+		<h3>댓글</h3>
 		<hr />
 	</div>
 
