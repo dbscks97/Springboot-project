@@ -28,6 +28,7 @@ color: black;
 </head>
 
 <body>
+	
 	 <%@ include file="../fix/header.jsp" %>
 	<h1 style="margin: 30px 0px 0px 340px">글 작성하기</h1>
 	<hr />
