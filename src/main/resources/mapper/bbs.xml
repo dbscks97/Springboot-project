@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project.mapper.BoardMapper">
+<!-- 자료실 저장 -->
+   <insert id="insertBbs" parameterType="com.example.project.vo.BbsVO"> <!-- parameterType은 전달인자 타입이고 생략가능함.  -->
+    insert into bbs1 (bbs_no,bbs_name,bbs_title,bbs_pwd,bbs_cont, bbs_date,filename,fileoriname,fileurl,bbs_cateno)
+    values(bbs_no_seq.nextval, #{bbs_name}, #{bbs_title}, #{bbs_pwd},#{bbs_cont},sysdate,#{fileName},#{fileOriName},#{fileUrl},#{bbs_cateno})
+   </insert>
+   
+ <!-- 카테고리 호출 -->
+<select id="category" resultType="com.example.project.vo.CategoryVO">
+ select
+  level, catename, cateno, catenoRef
+ from board_category
+     start with catenoRef is null connect by prior cateno = catenoRef
+</select>
+   <!-- 검색 전후 레코드 개수 -->
+   <select id="getTotalCount" resultType="int"> <!-- resultType 속성은 반환 타입 -->
+     select count(bbs_no) from bbs1 
+     <where>
+      <if test="find_field == ''"></if> <!-- 검색전 -->
+      <if test="find_field == 'bbs_title'">
+       bbs_title like #{find_name} <!-- 검색 필드가 제목인 경우 -->
+      </if>
+      <if test="find_field == 'bbs_cont'">
+       bbs_cont like #{find_name} <!-- 검색 필드가 내용인 경우 -->
+      </if>
+     </where>      
+   </select>
+   
+	<select id="bbs_list" resultType="com.example.project.vo.BbsVO">
+		select * from (
+       select rowNum rNum,bbs_no,bbs_name,bbs_title,bbs_hit,bbs_date,bbs_updateDate from
+       (select * from bbs1
+       
+       <where>
+        <if test="find_field == ''"></if> <!-- 검색전 -->
+        <if test="find_field == 'bbs_title'">
+          bbs_title like #{find_name} <!-- 검색 필드가 제목인 경우 -->
+        </if>
+        <if test="find_field == 'bbs_cont'">
+           bbs_cont like #{find_name} <!-- 검색 필드가 내용인 경우 -->
+         </if>
+     </where> 
+     ))    
+       where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}    <!-- &gt;=은 ~보다 크거나 같다(>=), &lt;= ~보다 작거나 같다.(<=) -->
+       order by bbs_no desc
+  </select>
+  
+  <select id="notice_bbs_list" resultType="com.example.project.vo.BbsVO">
+  select rowNum rNum,bbs_no,bbs_name,bbs_title,bbs_hit,bbs_date,bbs_updateDate
+   from bbs1
+  where bbs_cateno IN ('100')
+  order by bbs_no desc
+  </select>
+   <select id="free_bbs_list" resultType="com.example.project.vo.BbsVO">
+  select rowNum rNum,bbs_no,bbs_name,bbs_title,bbs_hit,bbs_date,bbs_updateDate
+   from bbs1
+  where bbs_cateno IN ('200')
+  order by bbs_no desc
+  </select> <select id="qna_bbs_list" resultType="com.example.project.vo.BbsVO">
+  select rowNum rNum,bbs_no,bbs_name,bbs_title,bbs_hit,bbs_date,bbs_updateDate
+   from bbs1
+  where bbs_cateno IN ('300')
+  order by bbs_no desc
+  </select> <select id="advice_bbs_list" resultType="com.example.project.vo.BbsVO">
+  select rowNum rNum,bbs_no,bbs_name,bbs_title,bbs_hit,bbs_date,bbs_updateDate
+   from bbs1
+  where bbs_cateno IN ('400')
+  order by bbs_no desc
+  </select>
+  
+	<!-- 조회수 증가 -->
+   <update id="updateHit">
+       update bbs1 set bbs_hit = bbs_hit + 1 where bbs_no=#{bbs_no}
+   </update>
+   
+   <!-- 내용보기 -->
+   <select id="getBbsCont" resultType="com.example.project.vo.BbsVO">
+       select * from bbs1 where bbs_no=#{bbs_no}
+   </select>
+   
+   <!-- 답변 저장 -->
+   <insert id="replyBbs">
+       insert into bbs1 (bbs_no,bbs_name,bbs_title,bbs_pwd,bbs_cont,bbs_date)
+       values(bbs_no_seq.nextval, #{bbs_name} , #{bbs_title} , #{bbs_pwd}, #{bbs_cont}, sysdate)
+   </insert>
+   
+   <!-- 자료실 수정 -->
+   <update id="editBbs">
+       update bbs1 set bbs_name=#{bbs_name}, bbs_title=#{bbs_title}, bbs_cont=#{bbs_cont},bbs_date=sysdate where bbs_no=#{bbs_no}
+   </update>   
+   
+   <!-- 자료실 삭제 -->
+   <delete id="delBbs">
+     delete from bbs1 where bbs_no=#{bbs_no}
+   </delete>
+
+</mapper>

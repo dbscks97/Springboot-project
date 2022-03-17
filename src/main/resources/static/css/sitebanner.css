@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.idx1{
+	width:100%; 
+   	height:200px;
+   	background:url(/images/banner1.jpg) no-repeat;
+   	background-position:center;
+   	background-size:1100px 200px;
+   	margin-bottom:70px;
+   	float: none;
+   	margin:0 auto;
+}
+.ct{
+margin-top:70px;
+margin-bottom:70px;
+}

@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.collapse.navbar-collapse{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}

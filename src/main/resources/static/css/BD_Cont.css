@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.qt{
+float: none;
+margin: 0 auto;
+}
+.comsize{
+	margin-bottom:20px;
+}
+.but{
+	float:right;
+}

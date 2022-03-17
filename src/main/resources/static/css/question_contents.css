@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.qt{
+float: none;
+margin: 0 auto;
+}
+.exam{
+margin-top:50px;
+}
+.source{
+white-space:pre;
+margin-top:100px;
+}
+.sourcebt{
+float: right;
+}
